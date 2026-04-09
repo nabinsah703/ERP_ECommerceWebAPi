@@ -39,6 +39,10 @@ namespace ECommerceApp
             builder.Services.AddScoped<ShoppingCartService>();
             // Registreing the OrderService
             builder.Services.AddScoped<OrderService>();
+            // Registering the PaymentService
+            builder.Services.AddScoped<PaymentService>();
+            // Registering the EmailService
+            builder.Services.AddScoped<EmailService>();
 
             var app = builder.Build();
 
