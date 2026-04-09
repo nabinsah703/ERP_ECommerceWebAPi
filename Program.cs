@@ -33,6 +33,8 @@ namespace ECommerceApp
             builder.Services.AddScoped<AddressService>();
             // Registering the CategoryService
             builder.Services.AddScoped<CategoryService>();
+            // Registreing the ProductService
+            builder.Services.AddScoped<ProductService>();
 
             var app = builder.Build();
 
