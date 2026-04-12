@@ -49,6 +49,10 @@ namespace ECommerceApp
             builder.Services.AddScoped<RefundService>();
             // Register Refund Processing Background Service
             builder.Services.AddHostedService<RefundProcessingBackgroundService>();
+            // Registering the FeedbackService
+            builder.Services.AddScoped<FeedbackService>();
+            // Register Refund Processing Background Service
+            builder.Services.AddHostedService<RefundProcessingBackgroundService>();
             // Register Background Service
             builder.Services.AddHostedService<PendingPaymentService>();
 
