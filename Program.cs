@@ -43,6 +43,8 @@ namespace ECommerceApp
             builder.Services.AddScoped<PaymentService>();
             // Registering the EmailService
             builder.Services.AddScoped<EmailService>();
+            // Registering the CancellationService
+            builder.Services.AddScoped<CancellationService>();
             // Register Background Service
             builder.Services.AddHostedService<PendingPaymentService>();
 
