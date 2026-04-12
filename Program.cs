@@ -45,6 +45,10 @@ namespace ECommerceApp
             builder.Services.AddScoped<EmailService>();
             // Registering the CancellationService
             builder.Services.AddScoped<CancellationService>();
+            // Registering the RefundService
+            builder.Services.AddScoped<RefundService>();
+            // Register Refund Processing Background Service
+            builder.Services.AddHostedService<RefundProcessingBackgroundService>();
             // Register Background Service
             builder.Services.AddHostedService<PendingPaymentService>();
 
