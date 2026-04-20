@@ -36,5 +36,6 @@ namespace ECommerceApp.Models
         public Category Category { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
         public ICollection<Feedback> Feedbacks { get; set; }
+        public ICollection<ProductOpeningQuantity> OpeningQuantities { get; set; }
     }
 }

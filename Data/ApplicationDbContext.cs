@@ -100,6 +100,44 @@ namespace ECommerceApp.Data
                 new Category { Id = 2, Name = "Books", Description = "Books and magazines", IsActive = true }
             );
 
+
+            // each and every product and it's has an opening quantity with different types of variation.
+            modelBuilder.Entity<OpeningQtyProductVariation>(entity =>
+            {
+                entity.HasKey(e => e.OpeningQtyProductVariationID);
+
+                entity.HasOne(e => e.OpeningQuantity)
+                      .WithMany(o => o.OpeningQtyProductVariations)
+                      .HasForeignKey(e => e.OpeningQtyID);
+
+                //entity.HasOne(e => e.ProductVariationDetails)
+                //      .WithMany(p => p.OpeningQtyProductVariations)
+                //      .HasForeignKey(e => e.ProductVariationDetailsID);
+            });
+
+            ///for multiple product image for an all the single variation of a product 
+            modelBuilder.Entity<OpeningQuantityImage>(entity =>
+            {
+                entity.HasKey(e => e.ProductOpeningQuantityImageID);
+
+                entity.Property(e => e.FileName)
+                      .HasMaxLength(200);
+
+                entity.Property(e => e.ImageType)
+                      .HasMaxLength(50);
+
+                entity.Property(e => e.CreatedDate)
+                      .HasDefaultValueSql("GETDATE()");
+
+                entity.HasIndex(e => e.FileName)
+                      .IsUnique();
+
+                entity.HasOne(e => e.OpeningQuantity)
+                      .WithMany(o => o.Images)
+                      .HasForeignKey(e => e.OpeningQuantityID)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+
             // Seed Products
             modelBuilder.Entity<Product>().HasData(
                 new Product
