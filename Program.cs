@@ -1,4 +1,5 @@
 using ECommerceApp.Data;
+using ECommerceApp.Interface;
 using ECommerceApp.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -55,6 +56,8 @@ namespace ECommerceApp
             builder.Services.AddHostedService<RefundProcessingBackgroundService>();
             // Register Background Service
             builder.Services.AddHostedService<PendingPaymentService>();
+            // Register the Product Variation service
+            builder.Services.AddScoped<IProductVariationService, ProductVariationService>();
 
             var app = builder.Build();
 

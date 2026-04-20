@@ -50,6 +50,20 @@ namespace ECommerceApp.Data
                 .HasForeignKey(f => f.CustomerId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            //Category -> Variation (Many-to-one)
+            modelBuilder.Entity<ProductVariation>()
+                .HasOne(f => f.Category)
+                .WithMany(c => c.ProductVariations)
+                .HasForeignKey(f => f.CategoryID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Product variation Details -> Product variaton (Many to One)
+            modelBuilder.Entity<ProductVariationDetails>()
+            .HasOne(f => f.ProductVariation)
+            .WithMany(c => c.ProductVariationDetails)
+            .HasForeignKey(f => f.ProductVariationID)
+            .OnDelete(DeleteBehavior.Restrict);
+
             // Feedback -> Product (Many-to-One)
             modelBuilder.Entity<Feedback>()
                 .HasOne(f => f.Product)
@@ -141,5 +155,7 @@ namespace ECommerceApp.Data
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<ProductVariation> ProductVariations { get; set; }
+        public DbSet<ProductVariationDetails> ProductVariationDetails { get; set; }
     }
 }
